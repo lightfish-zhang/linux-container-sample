@@ -1,0 +1,7 @@
+*.out
+*.o
+busybox_root/sys
+busybox_root/proc
+
+# ide
+.vscode
