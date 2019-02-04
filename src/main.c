@@ -11,9 +11,6 @@
 char *container_dir = "../busybox_root";
 char *container_hostname = "a-simple-container";
 int container_stack_size = 1 << 20; // 1024 * 1024
-char *container_ip = "127.0.0.2";
-char *container_bridge_name = "br0";
-char *container_bridge_ip = "127.0.0.1";
 
 int container_process(){
     printf("Launch container\n");
