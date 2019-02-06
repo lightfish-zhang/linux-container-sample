@@ -1,4 +1,15 @@
+# Linux 虚拟容器系列—— Net namespace
+
+## 实现一个虚拟机网络
+
+![](https://raw.githubusercontent.com/lightfish-zhang/media-library/master/image/201902/linux-network-namespace-bridge.jpg)
+
+
+以下 shell 脚本可以实现以上模型
+
+```sh
 #!/bin/sh
+# need to run by root
 
 # set env
 net_nums="0 1 2"
@@ -51,16 +62,11 @@ echo
 done
 done
 
-# run something
-ip netns exec net0 ./linux-container.out
-
 # clean
-for i in $net_nums
-do
-ip link del veth$i
-done
 for i in $net_nums
 do
 ip netns delete net$i
 done
 ip link del br0
+
+```

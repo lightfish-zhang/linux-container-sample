@@ -38,7 +38,7 @@ int container_process(){
         return status_code;
     }
 
-    // 设置独立的进程空间，挂载 proc 文件系统
+    // unix 一切皆文件，挂载 proc, sys, cgroup
     mount("none", "/proc", "proc", 0, NULL);
     mount("none", "/sys", "sysfs", 0, NULL);
 
@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
     int child_pid = clone(&container_process, child_stack+container_stack_size, // 移动到栈底
                         // 使用新的 namespace 后，执行需要 sudo 权限
                         CLONE_NEWNS|        // new Mount 设置单独的文件系统
-                        CLONE_NEWNET|    // new Net namespace
+                        // CLONE_NEWNET|    // new Net namespace
                         CLONE_NEWUTS|       // new UTS namespace hostname
                         CLONE_NEWPID|       // new PID namaspace，表现为：在容器里使用 ps 会只看到容器进程（祖先）的子孙进程，且进程id数值较小
                         SIGCHLD);           // 子进程退出时会发出信号给父进程

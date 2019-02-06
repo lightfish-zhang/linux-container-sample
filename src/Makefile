@@ -1,7 +1,7 @@
 CC=gcc
 LIBOBJS:=
 OBJS:=main.o
-OUT:=virtaul-container.out
+OUT:=linux-container.out
 
 all: $(OUT) 
 
